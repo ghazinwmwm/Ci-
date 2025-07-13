@@ -1,161 +1,436 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد الشهادات</title>
+    <title>مولد الشهادات الإلكترونية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0;
             box-sizing: border-box;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 5px;
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        button:hover {
-            background-color: #45a049;
-        }
-        .certificate {
-            border: 2px solid #4CAF50;
-            padding: 30px;
-            margin-top: 30px;
-            background-color: #fff;
+
+        .header {
             text-align: center;
-            position: relative;
-            background-image: url('https://img.freepik.com/free-vector/white-elegant-texture-background-style_23-2148432200.jpg');
-            background-size: cover;
+            margin: 20px 0 30px;
+            color: white;
+            width: 100%;
+            max-width: 800px;
         }
-        .certificate h2 {
-            color: #4CAF50;
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        .certificate-logo {
-            max-width: 150px;
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1a2a6c;
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
-        .signature-area {
-            margin-top: 50px;
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 1.1rem;
         }
-        .signature-box {
-            display: inline-block;
-            width: 40%;
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: #1a2a6c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .preview-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .preview-section h2 {
             text-align: center;
-            margin: 0 5%;
+            margin-bottom: 20px;
+            color: #1a2a6c;
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+            width: 100%;
+        }
+
+        .certificate {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700"><rect x="20" y="20" width="960" height="660" rx="10" ry="10" fill="none" stroke="%23d4af37" stroke-width="15"/><rect x="50" y="50" width="900" height="600" rx="10" ry="10" fill="none" stroke="%23d4af37" stroke-width="5"/></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            max-width: 600px;
+            min-height: 450px;
+            padding: 80px 70px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            background-color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .certificate-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #1a2a6c;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .recipient-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #b21f1f;
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+
+        .certificate-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .institution-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a2a6c;
+            margin-top: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .signature-area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .signature-box {
+            text-align: center;
+            width: 45%;
+        }
+
+        .signature-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            margin-top: 10px;
+            border-top: 2px solid #d4af37;
+            padding-top: 10px;
+            display: inline-block;
+        }
+
+        .date-box {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 800px;
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .instructions ul {
+            text-align: left;
+            margin: 15px auto;
+            max-width: 600px;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .certificate {
+                padding: 60px 40px;
+                min-height: 400px;
+            }
+            
+            .certificate-title {
+                font-size: 2.2rem;
+            }
+            
+            .recipient-name {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1>مولد الشهادات الإلكترونية</h1>
-        
-        <div class="form-group">
-            <label for="name">اسم المستلم:</label>
-            <input type="text" id="name" placeholder="أدخل الاسم الكامل">
+        <p>أنشئ شهادات احترافية بتصميم مشابه للشهادة المرفقة واحفظها كصورة على جهازك</p>
+    </div>
+
+    <div class="container">
+        <div class="form-section">
+            <h2>معلومات الشهادة</h2>
+            <div class="form-group">
+                <label for="name">اسم المستلم:</label>
+                <input type="text" id="name" placeholder="أدخل الاسم الكامل">
+            </div>
+            
+            <div class="form-group">
+                <label for="course">اسم الدورة/البرنامج:</label>
+                <input type="text" id="course" placeholder="أدخل اسم الدورة">
+            </div>
+            
+            <div class="form-group">
+                <label for="institution">اسم المؤسسة:</label>
+                <input type="text" id="institution" placeholder="أدخل اسم المؤسسة" value="SKILLS ACADEMY">
+            </div>
+            
+            <div class="form-group">
+                <label for="date">تاريخ الإصدار:</label>
+                <input type="date" id="date">
+            </div>
+            
+            <div class="form-group">
+                <label for="description">نص الشهادة:</label>
+                <textarea id="description" rows="3" placeholder="أدخل نص الشهادة">Has successfully completed the Clinical Nutrition Course</textarea>
+            </div>
+            
+            <button class="btn" onclick="generateCertificate()">إنشاء الشهادة</button>
         </div>
-        
-        <div class="form-group">
-            <label for="course">اسم الدورة/البرنامج:</label>
-            <input type="text" id="course" placeholder="أدخل اسم الدورة">
-        </div>
-        
-        <div class="form-group">
-            <label for="date">تاريخ الإصدار:</label>
-            <input type="date" id="date">
-        </div>
-        
-        <div class="form-group">
-            <label for="description">وصف الشهادة:</label>
-            <textarea id="description" rows="3" placeholder="أدخل وصف الشهادة"></textarea>
-        </div>
-        
-        <button onclick="generateCertificate()">إنشاء الشهادة</button>
-        
-        <div id="certificatePreview" class="certificate" style="display: none;">
-            <img src="https://via.placeholder.com/150x150?text=شعار" alt="شعار المؤسسة" class="certificate-logo">
-            <h2>شهادة تقدير</h2>
-            <p>تقدم هذه الشهادة إلى:</p>
-            <h3 id="certName"></h3>
-            <p>لإتمامه/ا بنجاح برنامج:</p>
-            <h4 id="certCourse"></h4>
-            <p id="certDescription"></p>
-            <p>بتاريخ: <span id="certDate"></span></p>
-            <div class="signature-area">
-                <div class="signature-box">
-                    <hr>
-                    <p>التوقيع</p>
-                </div>
-                <div class="signature-box">
-                    <hr>
-                    <p>ختم المؤسسة</p>
+
+        <div class="preview-section">
+            <h2>معاينة الشهادة</h2>
+            <div id="certificatePreview" class="certificate">
+                <div class="certificate-title">CERTIFICATE</div>
+                <div class="certificate-subtitle">OF COMPLETION</div>
+                <div class="recipient-name" id="certName">Dr. Ghydaa Mohammed</div>
+                <div class="certificate-text" id="certDescription">Has successfully completed the Clinical Nutrition Course</div>
+                <div class="institution-name" id="certInstitution">SKILLS ACADEMY</div>
+                
+                <div class="signature-area">
+                    <div class="signature-box">
+                        <div class="signature-title">Course Facilitator</div>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-title">Date of completion</div>
+                        <div class="date-box" id="certDate">2025/7/12</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div id="downloadSection" style="margin-top: 20px; display: none; text-align: center;">
-            <button onclick="downloadAsImage()">حفظ الشهادة كصورة</button>
-            <button onclick="printCertificate()">طباعة الشهادة</button>
+            
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadAsImage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    حفظ كصورة
+                </button>
+                <button class="download-btn" onclick="printCertificate()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                        <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    </svg>
+                    طباعة الشهادة
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- إضافة مكتبة html2canvas -->
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
+    <div class="instructions">
+        <h3>كيفية استخدام الموقع:</h3>
+        <ul>
+            <li>املأ جميع الحقول في قسم "معلومات الشهادة"</li>
+            <li>انقر على زر "إنشاء الشهادة" لمعاينة الشهادة</li>
+            <li>استخدم زر "حفظ كصورة" لتحميل الشهادة إلى جهازك</li>
+            <li>استخدم زر "طباعة الشهادة" لطباعة الشهادة مباشرة</li>
+            <li>يمكنك مشاركة الشهادة المحفوظة كصورة على أي منصة</li>
+        </ul>
+    </div>
+
     <script>
+        // تعيين التاريخ الحالي كتاريخ افتراضي
+        document.getElementById('date').valueAsDate = new Date();
+        
         function generateCertificate() {
             const name = document.getElementById('name').value;
             const course = document.getElementById('course').value;
+            const institution = document.getElementById('institution').value;
             const date = document.getElementById('date').value;
             const description = document.getElementById('description').value;
             
-            if (!name || !course || !date) {
+            if (!name || !course || !institution || !date || !description) {
                 alert('الرجاء إدخال جميع الحقول المطلوبة');
                 return;
             }
             
             document.getElementById('certName').textContent = name;
-            document.getElementById('certCourse').textContent = course;
             document.getElementById('certDescription').textContent = description;
+            document.getElementById('certInstitution').textContent = institution.toUpperCase();
             
-            const formattedDate = new Date(date).toLocaleDateString('ar-EG');
+            // تنسيق التاريخ
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\//g, '/');
+            
             document.getElementById('certDate').textContent = formattedDate;
             
-            document.getElementById('certificatePreview').style.display = 'block';
-            document.getElementById('downloadSection').style.display = 'block';
+            // عرض رسالة نجاح
+            alert('تم إنشاء الشهادة بنجاح! يمكنك الآن حفظها كصورة');
         }
         
         function downloadAsImage() {
@@ -165,15 +440,14 @@
             html2canvas(certificateElement, {
                 scale: 2, // زيادة الدقة
                 logging: false,
-                useCORS: true,
-                allowTaint: true
+                backgroundColor: "#FFFFFF"
             }).then(canvas => {
                 // تحويل Canvas إلى صورة
                 const image = canvas.toDataURL('image/png');
                 
                 // إنشاء رابط للتحميل
                 const link = document.createElement('a');
-                link.download = 'شهادة_' + document.getElementById('name').value + '.png';
+                link.download = 'Certificate_' + document.getElementById('name').value.replace(/\s+/g, '_') + '.png';
                 link.href = image;
                 
                 // محاكاة النقر على الرابط لبدء التحميل
@@ -181,16 +455,60 @@
                 link.click();
                 document.body.removeChild(link);
                 
-                // بالنسبة للأجهزة المحمولة، يمكن إظهار رسالة تأكيد
+                // رسالة تأكيد للأجهزة المحمولة
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    alert('تم حفظ الشهادة في معرض الصور');
+                    alert('تم حفظ الشهادة بنجاح في معرض الصور');
                 }
             });
         }
         
         function printCertificate() {
-            window.print();
+            const printWindow = window.open('', '', 'height=700,width=900');
+            printWindow.document.write('<html><head><title>Print Certificate</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write(`
+                body { 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center; 
+                    height: 100vh; 
+                    margin: 0; 
+                    padding: 20px;
+                    background: #f0f0f0;
+                }
+                .certificate { 
+                    transform: scale(1.1); 
+                    margin: 0 auto;
+                }
+                @media print {
+                    body { 
+                        background: none; 
+                        padding: 0;
+                    }
+                    .certificate { 
+                        transform: scale(1); 
+                        margin: 0;
+                    }
+                }
+            `);
+            printWindow.document.write('</style></head><body>');
+            printWindow.document.write(document.getElementById('certificatePreview').outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            
+            // تأخير الطباعة لضمان تحميل المحتوى
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
         }
+        
+        // توليد شهادة افتراضية عند التحميل
+        window.onload = function() {
+            document.getElementById('name').value = "Dr. Ghydaa Mohammed";
+            document.getElementById('course').value = "Clinical Nutrition";
+            generateCertificate();
+        };
     </script>
 </body>
 </html>
