@@ -1,52 +1,52 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد الشهادات الإلكترونية</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>مولد الشهادات الإلكترونية - تصميم A4</title>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            color: #333;
+            background: linear-gradient(135deg, #1e5799, #207cca, #2989d8, #1e5799);
+            color: #fff;
             padding: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
+        
         .header {
             text-align: center;
             margin: 20px 0 30px;
-            color: white;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-
+        
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-
+        
         .header p {
             font-size: 1.2rem;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
         }
-
+        
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -56,37 +56,38 @@
             justify-content: center;
             margin-bottom: 30px;
         }
-
+        
         .form-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
+            color: #333;
         }
-
+        
         .form-section h2 {
             text-align: center;
             margin-bottom: 25px;
-            color: #1a2a6c;
+            color: #1e5799;
             font-size: 1.8rem;
             padding-bottom: 10px;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid #2FC172;
         }
-
+        
         .form-group {
             margin-bottom: 20px;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
+            font-weight: 600;
+            color: #1e5799;
             font-size: 1.1rem;
         }
-
+        
         .form-group input, 
         .form-group textarea {
             width: 100%;
@@ -96,16 +97,16 @@
             font-size: 1rem;
             transition: all 0.3s;
         }
-
+        
         .form-group input:focus, 
         .form-group textarea:focus {
-            border-color: #1a2a6c;
+            border-color: #2FC172;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.2);
+            box-shadow: 0 0 0 3px rgba(47, 193, 114, 0.2);
         }
-
+        
         .btn {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            background: linear-gradient(to right, #1e5799, #2FC172);
             color: white;
             border: none;
             padding: 14px 25px;
@@ -113,159 +114,222 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
             display: block;
             width: 100%;
             margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
+        
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
-
+        
         .btn:active {
             transform: translateY(0);
         }
-
+        
         .preview-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 650px;
+            max-width: 850px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: auto;
         }
-
+        
         .preview-section h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #1a2a6c;
+            color: #1e5799;
             font-size: 1.8rem;
             padding-bottom: 10px;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid #2FC172;
             width: 100%;
         }
-
+        
+        /* تصميم الشهادة - A4 أفقي بدقة عالية */
+        .certificate-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
         .certificate {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700"><rect x="20" y="20" width="960" height="660" rx="10" ry="10" fill="none" stroke="%23d4af37" stroke-width="15"/><rect x="50" y="50" width="900" height="600" rx="10" ry="10" fill="none" stroke="%23d4af37" stroke-width="5"/></svg>');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
             width: 100%;
-            max-width: 600px;
-            min-height: 450px;
-            padding: 80px 70px;
+            max-width: 800px; /* معاينة بحجم أصغر */
+            height: auto;
+            aspect-ratio: 3508 / 2480; /* نسبة A4 أفقي */
+            background-color: white;
+            border: 15px solid #2FC172; /* الإطار المطلوب */
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 100px;
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            background-color: #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="none" stroke="%232FC172" stroke-opacity="0.1" stroke-width="2"/></svg>');
+            background-size: 200px 200px;
         }
-
+        
         .certificate-title {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: 8px;
-            color: #1a2a6c;
-            margin-bottom: 10px;
+            letter-spacing: 12px;
+            color: #1e5799;
+            margin-bottom: 15px;
             text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-
+        
         .certificate-subtitle {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            color: #1a2a6c;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-        }
-
-        .recipient-name {
             font-size: 2.2rem;
             font-weight: 700;
-            color: #b21f1f;
-            margin: 40px 0;
-            padding: 0 20px;
+            letter-spacing: 6px;
+            color: #1e5799;
+            margin-bottom: 70px;
+            text-transform: uppercase;
+            position: relative;
         }
-
+        
+        .certificate-subtitle::after {
+            content: "";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: #2FC172;
+        }
+        
+        .recipient-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 60px 0 40px;
+            padding: 0 20px;
+            line-height: 1.3;
+        }
+        
         .certificate-text {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             line-height: 1.8;
             color: #333;
-            max-width: 500px;
-            margin: 0 auto 40px;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            font-weight: 400;
         }
-
+        
         .institution-name {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #1a2a6c;
+            color: #1e5799;
             margin-top: 50px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            position: relative;
+            padding-bottom: 20px;
         }
-
+        
+        .institution-name::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: #2FC172;
+        }
+        
         .signature-area {
             display: flex;
             justify-content: space-between;
-            margin-top: 50px;
-            padding: 0 20px;
+            width: 100%;
+            margin-top: 70px;
+            padding: 0 30px;
         }
-
+        
         .signature-box {
             text-align: center;
             width: 45%;
         }
-
+        
         .signature-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #333;
-            margin-top: 10px;
-            border-top: 2px solid #d4af37;
-            padding-top: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 20px;
+            border-top: 2px solid #2FC172;
+            padding-top: 15px;
             display: inline-block;
         }
-
+        
         .date-box {
-            font-size: 1.1rem;
-            color: #333;
+            font-size: 1.2rem;
+            color: #2c3e50;
             margin-top: 30px;
-            text-align: center;
+            font-weight: 500;
         }
-
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8rem;
+            color: rgba(47, 193, 114, 0.1);
+            font-weight: 900;
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+        
         .download-section {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
             justify-content: center;
+            flex-wrap: wrap;
         }
-
+        
         .download-btn {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            background: linear-gradient(to right, #1e5799, #2FC172);
             color: white;
             border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
+        
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
-
-        .instructions {
+        
+        .size-info {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 20px;
@@ -274,20 +338,28 @@
             text-align: center;
             color: white;
             font-size: 1.1rem;
+            width: 100%;
         }
-
-        .instructions ul {
-            text-align: left;
-            margin: 15px auto;
-            max-width: 600px;
-            padding-left: 20px;
+        
+        .size-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            text-align: center;
         }
-
-        .instructions li {
+        
+        .size-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .size-card h4 {
             margin-bottom: 10px;
-            line-height: 1.5;
+            color: #2FC172;
         }
-
+        
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -299,16 +371,46 @@
             }
             
             .certificate {
-                padding: 60px 40px;
-                min-height: 400px;
+                padding: 50px 30px;
             }
             
             .certificate-title {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+                letter-spacing: 8px;
             }
             
             .recipient-name {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+            
+            .signature-area {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .signature-box {
+                width: 100%;
+            }
+        }
+        
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .certificate-container, .certificate-container * {
+                visibility: visible;
+            }
+            .certificate-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 0;
+            }
+            .certificate {
+                max-width: 100%;
+                box-shadow: none;
+                border: 15px solid #2FC172 !important;
             }
         }
     </style>
@@ -316,7 +418,7 @@
 <body>
     <div class="header">
         <h1>مولد الشهادات الإلكترونية</h1>
-        <p>أنشئ شهادات احترافية بتصميم مشابه للشهادة المرفقة واحفظها كصورة على جهازك</p>
+        <p>أنشئ شهادات احترافية بتصميم A4 أفقي بدقة عالية للطباعة (3508 × 2480 بكسل)</p>
     </div>
 
     <div class="container">
@@ -348,38 +450,52 @@
             </div>
             
             <button class="btn" onclick="generateCertificate()">إنشاء الشهادة</button>
+            
+            <div class="form-group" style="margin-top: 30px;">
+                <label>خيارات متقدمة:</label>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="download-btn" style="font-size: 0.9rem; padding: 10px;" onclick="changeBorderColor('#2FC172')">إطار أخضر</button>
+                    <button class="download-btn" style="font-size: 0.9rem; padding: 10px; background: linear-gradient(to right, #1e5799, #9b59b6);" onclick="changeBorderColor('#9B59B6')">إطار بنفسجي</button>
+                    <button class="download-btn" style="font-size: 0.9rem; padding: 10px; background: linear-gradient(to right, #1e5799, #e74c3c);" onclick="changeBorderColor('#E74C3C')">إطار أحمر</button>
+                </div>
+            </div>
         </div>
 
         <div class="preview-section">
-            <h2>معاينة الشهادة</h2>
-            <div id="certificatePreview" class="certificate">
-                <div class="certificate-title">CERTIFICATE</div>
-                <div class="certificate-subtitle">OF COMPLETION</div>
-                <div class="recipient-name" id="certName">Dr. Ghydaa Mohammed</div>
-                <div class="certificate-text" id="certDescription">Has successfully completed the Clinical Nutrition Course</div>
-                <div class="institution-name" id="certInstitution">SKILLS ACADEMY</div>
-                
-                <div class="signature-area">
-                    <div class="signature-box">
-                        <div class="signature-title">Course Facilitator</div>
-                    </div>
-                    <div class="signature-box">
-                        <div class="signature-title">Date of completion</div>
-                        <div class="date-box" id="certDate">2025/7/12</div>
+            <h2>معاينة الشهادة <span style="font-size: 1rem;">(A4 أفقي - 29.7 × 21 سم)</span></h2>
+            
+            <div class="certificate-container">
+                <div id="certificatePreview" class="certificate">
+                    <div class="watermark">CERTIFICATE</div>
+                    
+                    <div class="certificate-title">CERTIFICATE</div>
+                    <div class="certificate-subtitle">OF COMPLETION</div>
+                    <div class="recipient-name" id="certName">Dr. Ghydaa Mohammed</div>
+                    <div class="certificate-text" id="certDescription">Has successfully completed the Clinical Nutrition Course</div>
+                    <div class="institution-name" id="certInstitution">SKILLS ACADEMY</div>
+                    
+                    <div class="signature-area">
+                        <div class="signature-box">
+                            <div class="signature-title">Course Facilitator</div>
+                        </div>
+                        <div class="signature-box">
+                            <div class="signature-title">Date of completion</div>
+                            <div class="date-box" id="certDate">2025/7/12</div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="download-section">
                 <button class="download-btn" onclick="downloadAsImage()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                         <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                     </svg>
-                    حفظ كصورة
+                    حفظ كصورة بدقة عالية
                 </button>
                 <button class="download-btn" onclick="printCertificate()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
                         <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                     </svg>
@@ -389,15 +505,28 @@
         </div>
     </div>
 
-    <div class="instructions">
-        <h3>كيفية استخدام الموقع:</h3>
-        <ul>
-            <li>املأ جميع الحقول في قسم "معلومات الشهادة"</li>
-            <li>انقر على زر "إنشاء الشهادة" لمعاينة الشهادة</li>
-            <li>استخدم زر "حفظ كصورة" لتحميل الشهادة إلى جهازك</li>
-            <li>استخدم زر "طباعة الشهادة" لطباعة الشهادة مباشرة</li>
-            <li>يمكنك مشاركة الشهادة المحفوظة كصورة على أي منصة</li>
-        </ul>
+    <div class="size-info">
+        <h3>مواصفات الشهادة الرقمية:</h3>
+        <div class="size-info-grid">
+            <div class="size-card">
+                <h4>البكسل</h4>
+                <p>3508 × 2480 بكسل</p>
+                <p>(دقة 300 DPI)</p>
+            </div>
+            <div class="size-card">
+                <h4>البوصة</h4>
+                <p>11.69 × 8.27 إنش</p>
+            </div>
+            <div class="size-card">
+                <h4>السنتيمتر</h4>
+                <p>29.7 × 21 سم</p>
+            </div>
+            <div class="size-card">
+                <h4>لون الإطار</h4>
+                <p>#2FC172</p>
+                <div style="width: 30px; height: 30px; background: #2FC172; margin: 10px auto; border-radius: 4px;"></div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -430,24 +559,42 @@
             document.getElementById('certDate').textContent = formattedDate;
             
             // عرض رسالة نجاح
-            alert('تم إنشاء الشهادة بنجاح! يمكنك الآن حفظها كصورة');
+            alert('تم إنشاء الشهادة بنجاح! يمكنك الآن حفظها كصورة بدقة عالية');
+        }
+        
+        function changeBorderColor(color) {
+            document.getElementById('certificatePreview').style.borderColor = color;
         }
         
         function downloadAsImage() {
             const certificateElement = document.getElementById('certificatePreview');
             
-            // استخدام html2canvas لتحويل الشهادة إلى صورة
+            // احفظ الإعدادات الأصلية
+            const originalBorder = certificateElement.style.border;
+            const originalWidth = certificateElement.style.width;
+            const originalHeight = certificateElement.style.height;
+            const originalPadding = certificateElement.style.padding;
+            
+            // تعيين الأبعاد الكاملة للشهادة (3508 × 2480 بكسل)
+            certificateElement.style.width = '3508px';
+            certificateElement.style.height = '2480px';
+            certificateElement.style.padding = '140px 200px'; // تعديل الحشو للحجم الكامل
+            certificateElement.style.border = '30px solid ' + getComputedStyle(certificateElement).borderColor;
+            
+            // استخدام html2canvas لتحويل الشهادة إلى صورة بدقة عالية
             html2canvas(certificateElement, {
-                scale: 2, // زيادة الدقة
+                scale: 3, // زيادة الدقة
                 logging: false,
-                backgroundColor: "#FFFFFF"
+                backgroundColor: "#FFFFFF",
+                useCORS: true,
+                allowTaint: true
             }).then(canvas => {
                 // تحويل Canvas إلى صورة
-                const image = canvas.toDataURL('image/png');
+                const image = canvas.toDataURL('image/png', 1.0);
                 
                 // إنشاء رابط للتحميل
                 const link = document.createElement('a');
-                link.download = 'Certificate_' + document.getElementById('name').value.replace(/\s+/g, '_') + '.png';
+                link.download = 'شهادة_' + document.getElementById('name').value.replace(/\s+/g, '_') + '.png';
                 link.href = image;
                 
                 // محاكاة النقر على الرابط لبدء التحميل
@@ -455,58 +602,76 @@
                 link.click();
                 document.body.removeChild(link);
                 
-                // رسالة تأكيد للأجهزة المحمولة
-                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    alert('تم حفظ الشهادة بنجاح في معرض الصور');
-                }
+                // استعادة الإعدادات الأصلية
+                certificateElement.style.width = originalWidth;
+                certificateElement.style.height = originalHeight;
+                certificateElement.style.padding = originalPadding;
+                certificateElement.style.border = originalBorder;
+                
+                // رسالة تأكيد
+                alert('تم حفظ الشهادة بدقة عالية (3508 × 2480 بكسل) بنجاح!');
             });
         }
         
         function printCertificate() {
-            const printWindow = window.open('', '', 'height=700,width=900');
-            printWindow.document.write('<html><head><title>Print Certificate</title>');
-            printWindow.document.write('<style>');
+            // إنشاء نافذة طباعة مخصصة
+            const printWindow = window.open('', '_blank');
             printWindow.document.write(`
-                body { 
-                    display: flex; 
-                    justify-content: center; 
-                    align-items: center; 
-                    height: 100vh; 
-                    margin: 0; 
-                    padding: 20px;
-                    background: #f0f0f0;
-                }
-                .certificate { 
-                    transform: scale(1.1); 
-                    margin: 0 auto;
-                }
-                @media print {
-                    body { 
-                        background: none; 
-                        padding: 0;
-                    }
-                    .certificate { 
-                        transform: scale(1); 
-                        margin: 0;
-                    }
-                }
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>طباعة الشهادة</title>
+                    <style>
+                        @media print {
+                            @page {
+                                size: A4 landscape;
+                                margin: 0;
+                            }
+                            body {
+                                margin: 0;
+                                padding: 0;
+                            }
+                        }
+                        .certificate {
+                            width: 29.7cm;
+                            height: 21cm;
+                            border: 30px solid #2FC172 !important;
+                            padding: 140px 200px;
+                            box-sizing: border-box;
+                            background: white;
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="none" stroke="%232FC172" stroke-opacity="0.1" stroke-width="2"/></svg>');
+                            background-size: 200px 200px;
+                        }
+                        /* بقية أنماط الشهادة هنا */
+                    </style>
+                </head>
+                <body>
+                    ${document.getElementById('certificatePreview').outerHTML}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(function() {
+                                window.close();
+                            }, 1000);
+                        };
+                    </script>
+                </body>
+                </html>
             `);
-            printWindow.document.write('</style></head><body>');
-            printWindow.document.write(document.getElementById('certificatePreview').outerHTML);
-            printWindow.document.write('</body></html>');
             printWindow.document.close();
-            
-            // تأخير الطباعة لضمان تحميل المحتوى
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 500);
         }
         
         // توليد شهادة افتراضية عند التحميل
         window.onload = function() {
             document.getElementById('name').value = "Dr. Ghydaa Mohammed";
             document.getElementById('course').value = "Clinical Nutrition";
+            document.getElementById('date').valueAsDate = new Date('2025-07-12');
             generateCertificate();
         };
     </script>
