@@ -10,10 +10,9 @@
             src: url('hi.ttf') format('truetype');
         }
 
-        /* أسلوب الهوية البصرية */
         :root {
-            --primary-color: #2ecc71; /* الأخضر الفاتح */
-            --secondary-color: #fff; /* الأبيض */
+            --primary-color: #2ecc71;
+            --secondary-color: #fff;
             --text-color: #333;
         }
 
@@ -33,14 +32,14 @@
         }
 
         .header h1 {
-            color: white; /* تعديل لون العنوان */
+            color: white;
             margin-top: 0;
             font-weight: 700;
             font-size: 1.6rem;
         }
 
         .logo {
-            width: 160px; /* ضعف الحجم السابق */
+            width: 160px;
             margin: 0 auto 10px;
             filter: brightness(0) invert(1);
             display: block;
@@ -64,7 +63,6 @@
 
         .form-group {
             margin-bottom: 1rem;
-            width: 100%;
             text-align: right;
         }
 
@@ -74,7 +72,6 @@
             font-weight: 600;
         }
 
-        input[type="text"],
         input[type="number"],
         select {
             width: 100%;
@@ -94,7 +91,6 @@
             cursor: pointer;
             font-size: 15px;
             margin-top: 10px;
-            transition: background-color 0.3s ease;
         }
 
         button:hover {
@@ -118,14 +114,13 @@
             margin-top: 1rem;
         }
 
-        /* إعدادات الاستجابة للهواتف */
         @media (max-width: 600px) {
             .container {
                 padding: 1rem;
                 font-size: 14px;
             }
             .logo {
-                width: 120px; /* تصغير الشعار على الموبايل */
+                width: 120px;
                 margin-bottom: 8px;
             }
             .header h1 {
@@ -148,9 +143,16 @@
     </div>
 
     <div class="container">
-        <h2>حاسبة احتياجات الجسم من السعرات</h2>
+        <h2>حاسبة احتياجات السعرات وتقييم الوزن</h2>
 
         <form id="calorieForm">
+            <div class="form-group">
+                <label for="gender">الجنس:</label>
+                <select id="gender">
+                    <option value="male">ذكر</option>
+                    <option value="female">أنثى</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="age">العمر:</label>
                 <input type="number" id="age" placeholder="العمر بالسنوات..." required />
@@ -171,7 +173,7 @@
                     <option value="active">عالٍ (تمارين شاقة)</option>
                 </select>
             </div>
-            <button type="submit">حساب الاحتياجات</button>
+            <button type="submit">احسب الآن</button>
         </form>
 
         <div class="result" id="result"></div>
@@ -186,20 +188,19 @@
         document.getElementById('calorieForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const gender = document.getElementById('gender').value;
             const age = parseInt(document.getElementById('age').value);
             const weight = parseFloat(document.getElementById('weight').value);
             const height = parseFloat(document.getElementById('height').value);
             const activity = document.getElementById('activity').value;
 
-            // حساب BMR باستخدام صيغة Mifflin-St Jeor
             let bmr;
-            if (age >= 18) {
+            if (gender === 'male') {
                 bmr = 10 * weight + 6.25 * height - 5 * age + 5;
             } else {
-                bmr = 17.5 * weight + 0.3 * height - 6.8 * age + 65;
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
             }
 
-            // ضبط النشاط البدني
             const activityFactor = {
                 sedentary: 1.2,
                 moderate: 1.55,
@@ -208,17 +209,37 @@
 
             const totalCalories = Math.round(bmr * activityFactor[activity]);
 
-            // عرض النتائج
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `
-                <p>الاحتياج اليومي للسعرات: <span style="color: #FFD700;">${totalCalories}</span> سعرة</p>
-                <p>بناءً على:</p>
-                <ul style="list-style: none; padding: 0;">
-                    <li>العمر: ${age} سنة</li>
-                    <li>الوزن: ${weight} كجم</li>
-                    <li>الطول: ${height} سم</li>
-                    <li>النشاط: ${activity}</li>
-                </ul>
+            // BMI
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+            let weightStatus = '';
+            let idealWeight = 22 * heightInMeters * heightInMeters;
+            let weightDiff = (weight - idealWeight).toFixed(1);
+
+            if (bmi < 18.5) {
+                weightStatus = 'نقص وزن';
+            } else if (bmi < 25) {
+                weightStatus = 'وزنك صحي';
+            } else if (bmi < 30) {
+                weightStatus = 'زيادة وزن';
+            } else {
+                weightStatus = 'سمنة';
+            }
+
+            const protein = Math.round(weight * 2);
+            const fat = Math.round((0.25 * totalCalories) / 9);
+            const carbs = Math.round((totalCalories - (protein * 4 + fat * 9)) / 4);
+
+            document.getElementById('result').innerHTML = `
+                <p>🔥 <strong>احتياجك اليومي:</strong> <span style="color:#FFD700;">${totalCalories}</span> سعرة حرارية</p>
+                <p>💪 البروتين: <strong>${protein}</strong> غرام</p>
+                <p>🥑 الدهون: <strong>${fat}</strong> غرام</p>
+                <p>🍚 الكاربوهيدرات: <strong>${carbs}</strong> غرام</p>
+                <hr />
+                <p>📊 مؤشر كتلة الجسم (BMI): <strong>${bmi.toFixed(1)}</strong></p>
+                <p>⚖️ الحالة: <strong>${weightStatus}</strong></p>
+                <p>🏁 الوزن المثالي: <strong>${idealWeight.toFixed(1)}</strong> كجم</p>
+                <p>🛠️ الفرق المطلوب: <strong>${Math.abs(weightDiff)}</strong> كجم ${weightDiff > 0 ? 'للخفض' : 'للزيادة'}</p>
             `;
         });
     </script>
